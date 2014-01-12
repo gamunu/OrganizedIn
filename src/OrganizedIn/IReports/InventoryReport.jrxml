@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventoryReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dbd071bb-6ca5-4f0f-bef0-a85bb82e28b7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="my_query" class="java.lang.String">
+		<defaultValueExpression><![CDATA["PC"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM inventory i, supplier s WHERE i.supplierid = s.supplierid AND i.type = $P{my_query}]]>
+	</queryString>
+	<field name="SERIALNO" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="BRAND" class="java.lang.String"/>
+	<field name="MODEL" class="java.lang.String"/>
+	<field name="USERNAME" class="java.lang.String"/>
+	<field name="RAM" class="java.lang.String"/>
+	<field name="PROCESSOR" class="java.lang.String"/>
+	<field name="HARDDISK" class="java.lang.String"/>
+	<field name="TYPE" class="java.lang.String"/>
+	<field name="FRONT" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="DATEPURCHASED" class="java.sql.Timestamp"/>
+	<field name="PRINTER_TYPE" class="java.lang.String"/>
+	<field name="COMPANYNAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<frame>
+				<reportElement uuid="87f9c670-b70e-4c46-a317-259c71dbb101" mode="Opaque" x="0" y="70" width="802" height="32" forecolor="#000000" backcolor="#66CCFF"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="97cfa469-0688-4627-a519-1bea00a9022b" x="635" y="12" width="144" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement uuid="19ba8bd3-933e-463d-8b78-c84593beaa61" mode="Opaque" x="0" y="0" width="721" height="66" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+				<staticText>
+					<reportElement uuid="261f4cb8-494c-42aa-bacd-574d7fbf1a31" style="Title" x="0" y="0" width="370" height="66" forecolor="#000000"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Inventory]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ef287dfe-b20f-46d8-b2c8-7f5f533f2945" style="Column header" mode="Opaque" x="0" y="0" width="74" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[SERIALNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="42a24fcc-d3ba-4ecf-8fc6-715953e2d26e" style="Column header" mode="Opaque" x="74" y="0" width="44" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6aa18fe0-ec94-4602-9a9d-950b4a4fca89" style="Column header" mode="Opaque" x="116" y="0" width="54" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[BRAND]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="84f89e1d-301c-4cd7-825e-749742d9ddb2" style="Column header" mode="Opaque" x="170" y="0" width="55" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[MODEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="64ef6170-6312-43c3-81b7-171edb474f9e" style="Column header" mode="Opaque" x="224" y="0" width="44" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[USERNAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fe684141-9de1-43fe-8b7d-b2efc187768b" style="Column header" mode="Opaque" x="267" y="0" width="44" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[RAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77e7c054-1219-4240-b984-7c09e4d4ff57" style="Column header" mode="Opaque" x="310" y="0" width="74" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[PROCESSOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a136b859-08e1-4a86-bfb0-8863cfdb24d0" style="Column header" mode="Opaque" x="383" y="0" width="74" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[HARDDISK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de8ee093-4303-4a80-913e-401bf2717734" style="Column header" mode="Opaque" x="456" y="0" width="44" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[TYPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="12cfa094-375b-4d06-8bf0-be1df6fb59af" style="Column header" mode="Opaque" x="500" y="0" width="58" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[FRONT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="72c02189-a833-4b52-8756-6b82203e1c05" style="Column header" mode="Opaque" x="558" y="0" width="58" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f570e4c2-06d7-471e-b63d-61928d251a39" style="Column header" mode="Opaque" x="616" y="0" width="44" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[DATEPURCHASED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5a1043f9-d6bd-4955-a674-9d0ceae1e3eb" style="Column header" mode="Opaque" x="660" y="0" width="67" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[PRINTER_TYPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c9921449-1162-4590-a5bb-a5ff379500e9" style="Column header" mode="Opaque" x="727" y="0" width="75" height="23" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[COMPANYNAME]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<frame>
+				<reportElement uuid="dba7c661-d28c-4eaa-9f75-1473e2957a1c" style="Row" mode="Opaque" x="0" y="6" width="797" height="30"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e70529fa-bc12-42ee-bb55-3a1bb9e08047" style="Detail" positionType="Float" x="0" y="3" width="72" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SERIALNO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e209d6dc-4685-4ee8-8bc6-b4c4019e7ec3" style="Detail" positionType="Float" x="72" y="3" width="44" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="84426e8f-082d-4eb6-acb0-2536e480dc66" style="Detail" positionType="Float" x="118" y="3" width="51" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{BRAND}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="be7f1d4a-975f-4efb-9344-dad50a0647a3" style="Detail" positionType="Float" x="169" y="3" width="55" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MODEL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="2e1e96bf-fa9f-4f9e-a0a4-553516e09c96" style="Detail" positionType="Float" x="224" y="3" width="43" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{USERNAME}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="3f18c41a-461e-406a-848f-a52a949227c2" style="Detail" positionType="Float" x="267" y="3" width="43" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{RAM}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="ebb72a69-a7f0-4f2a-85af-cf9002633cb9" style="Detail" positionType="Float" x="310" y="3" width="73" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PROCESSOR}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="be49feaf-2321-4dab-81ba-dcfd8a8275f0" style="Detail" positionType="Float" x="383" y="3" width="73" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{HARDDISK}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="373904f5-d4f8-4acf-9cbe-711c8dfc3819" style="Detail" positionType="Float" x="456" y="3" width="44" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TYPE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="dbc3b113-d552-4fd5-9a83-ea2c3b2bb5f8" style="Detail" positionType="Float" x="500" y="3" width="55" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FRONT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="af54d18f-4329-4681-b660-4fd8f4fa0b47" style="Detail" positionType="Float" x="558" y="3" width="58" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e0b48417-e0cf-4992-9543-f2553b5ec3c2" style="Detail" positionType="Float" x="616" y="3" width="44" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DATEPURCHASED}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="41defeb0-8411-4b92-9e29-d4c481d0206f" style="Detail" positionType="Float" x="662" y="3" width="59" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PRINTER_TYPE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e8e65068-99f1-4224-b9f8-b9954d8138bf" style="Detail" positionType="Float" x="725" y="3" width="72" height="23"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COMPANYNAME}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement uuid="674469c1-875d-4a96-b6b9-a038bac867d7" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="3219ae60-6ce6-40c0-9f59-8372ade7ad4d" mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="a1e29ab0-df68-4f55-8b4e-9fdae77154b0" style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="701ca055-558d-4a24-b5a3-fa5112333aa5" style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="5ef93c71-78b9-4108-ba1e-fdd21d806413" style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

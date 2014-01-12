@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="WarrantyReport" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="662a7ed6-41e3-4a69-a731-d5d5f1d65685">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="date_para" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM WARRANTY w, SUPPLIER s WHERE TO_DATE($P{date_para}, 'YYYY-MM-DD') > EXPIRYDATE]]>
+	</queryString>
+	<field name="SERIALNO" class="java.lang.String"/>
+	<field name="DURATION" class="java.math.BigDecimal"/>
+	<field name="EXPIRYDATE" class="oracle.sql.TIMESTAMPLTZ"/>
+	<field name="PRODUCTTYPE" class="java.lang.String"/>
+	<field name="COMPANYNAME" class="java.lang.String"/>
+	<field name="DATEOFPURCHASE" class="oracle.sql.TIMESTAMPLTZ"/>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5ce6bf57-4f0d-4c92-b5bc-3f1347e9da1f" style="Title" x="0" y="0" width="802" height="67"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="54" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Warranty Expired Inventory]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="1342ca54-c0a2-46c9-b9fc-efd8cadf0cb6" mode="Opaque" x="97" y="5" width="705" height="20" backcolor="#666666"/>
+				<staticText>
+					<reportElement uuid="e8429335-049c-4b4d-bdb5-b78548cc5f66" style="Column header" x="0" y="0" width="117" height="15"/>
+					<textElement/>
+					<text><![CDATA[SERIALNO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="185e12bf-e0eb-4ab9-ae12-63757aa44805" style="Column header" x="117" y="0" width="117" height="15"/>
+					<textElement/>
+					<text><![CDATA[DURATION]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="abc002ca-1ca7-4caa-8930-d636ed8a5205" style="Column header" x="234" y="0" width="117" height="15"/>
+					<textElement/>
+					<text><![CDATA[EXPIRYDATE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="af3e3f99-bbe0-4c98-b94d-677377812a83" style="Column header" x="351" y="0" width="117" height="15"/>
+					<textElement/>
+					<text><![CDATA[PRODUCTTYPE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f6a0bc42-15de-4ec1-9f98-cd5b139745eb" style="Column header" x="468" y="0" width="117" height="15"/>
+					<textElement/>
+					<text><![CDATA[COMPANYNAME]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f7eb68e9-9420-4cfc-b6d3-7df05ffcadd0" style="Column header" x="585" y="0" width="117" height="15"/>
+					<textElement/>
+					<text><![CDATA[DATEOFPURCHASE]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement uuid="81cd8a53-473a-460d-9430-4e0eab82ff1e" x="97" y="1" width="705" height="15"/>
+				<textField>
+					<reportElement uuid="835f372b-f6d8-4f98-b206-f8a4407876b8" style="Detail" x="0" y="0" width="117" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{SERIALNO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="729bc16f-0d4d-482c-9f9b-63373092f5e7" style="Detail" x="117" y="0" width="117" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{DURATION}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="02ab2e37-25b7-4897-8d33-e46ce4a40e27" style="Detail" x="234" y="0" width="117" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[""+$F{EXPIRYDATE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="6a45fd2f-06a3-4b5a-a10c-39ed0ddcfaac" style="Detail" x="351" y="0" width="117" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{PRODUCTTYPE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="ecfda1c9-5753-47d1-a7fc-cb9148353c4e" style="Detail" x="468" y="0" width="117" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{COMPANYNAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="026f7e2d-d56a-464c-8da0-07c7009ada2d" style="Detail" x="585" y="0" width="117" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[""+$F{DATEOFPURCHASE}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement uuid="84d97f76-23ac-494c-a2ee-e4d6264bebe7" positionType="FixRelativeToBottom" x="97" y="16" width="705" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="a5da6548-02dc-40fe-b7e8-6de4a65fbe3b" style="Column header" x="671" y="0" width="131" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="859c38b6-0568-4355-822a-171cc44b8211" x="96" y="0" width="267" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Silhouette Title Report]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
